@@ -1,15 +1,14 @@
-import react from 'react'
-
+import AppRoutes from "./Routes/AppRoutes";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-
   return (
     <>
-     <h2>
-      Lets Start !
-     </h2>
+       <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
