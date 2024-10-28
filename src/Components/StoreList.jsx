@@ -27,14 +27,14 @@ const StoreList = () => {
   
 
   // Take only the first 3 stores for the preview
-  const previewstores = stores.slice(0, 3);
+  const previewstores = stores.slice(0, 4);
 
   return (
-    <div className="container mx-px w-full p-4">
+    <div className="container mx-auto w-full p-4">
       <h2 className="text-lg font-semibold mb-4">Store Listings</h2>
 
       {/* Grid displaying only first 3 stores */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {previewstores.map((store, index) => (
           <StoreCard key={index} store={store} />
         ))}

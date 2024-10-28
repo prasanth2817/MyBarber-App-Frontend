@@ -1,22 +1,3 @@
-// import React from 'react'
-
-// function HomeText(){
-//     return (
-//       <article className="container mx-auto flex flex-col items-center justify-center gap-8 p-4">
-//         <div className="flex flex-col text-5xl my-2">
-//           <h6 className="font-bold text-black text-justify my-2">Book Local Beauty and
-//             <br /> well services</h6>
-//           <h1 className="my-4 text-center">
-//             Find Better Places,
-//             <br />and Wonder...
-//           </h1>
-//         </div>
-//       </article>
-//     );
-//   }
-
-// export default HomeText
-
 import React from 'react';
 
 function HomeText() {
