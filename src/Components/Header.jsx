@@ -1,85 +1,57 @@
 import { useAuthContext } from "../Contexts/AuthContext";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-// import { RoleContext } from "../Contexts/RoleContext";
-import LogoutButton from "./LogoutButton";
 import { FaRegUser } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
+import useLogout from "../Hooks/useLogout";
 
 const Header = () => {
-  const { authUser, setAuthUser } = useAuthContext();
-  // const { role } = useContext(RoleContext);
+  const { authUser } = useAuthContext();
+  const { loading, logout } = useLogout();
 
-  // const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  // const toggleDropdown = () => {
-  //   setDropdownOpen((prev) => !prev);
-  // };
+  console.log(authUser);
+  
 
   return (
-    <header className="bg-slate-100 shadow-2xl bg-gradient-to-r from-purple-400 to-blue-400">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-1.5 h-16">
+    <header className="bg-slate-100 bg-gradient-to-r from-purple-400 to-blue-400 shadow-lg shadow-purple-400/50">
+      <div className="flex sm:flex-row justify-between items-center max-w-6xl mx-auto py-3 sm:py-1.5 lg:h-20 sm:h-16 px-4 sm:px-6 lg:px-8">
+        {/* Logo and Title */}
         <Link to="/">
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap ">
-            <span className="text-slate-700">Book</span>
-            <span className="text-slate-500 text-2xl">My </span>
-            <span className="text-slate-800 text-3xl">Barber</span>
+          <h1 className="font-bold text-center text-xs sm:text-xl flex flex-wrap">
+            <span className="text-slate-700 text-sm lg:text-base">Book</span>
+            <span className="text-slate-500 text-md lg:text-2xl">My </span>
+            <span className="text-slate-800 text-lg lg:text-3xl">Barber</span>
           </h1>
         </Link>
 
-        <div className="flex items-center justify-center gap-3">
+        {/* Auth Section */}
+        <div className="flex items-center justify-center gap-3 mt-2 sm:mt-0">
           {authUser ? (
             <>
-              <h1 className="text-slate-600 text-sm sm:text-base font-bold">
-                Welcome,{" "}
-                <span className="text-slate-700">{authUser.userName}</span>
+              <h1 className="text-slate-600 text-xs sm:text-base font-bold">
+                Welcome, <span className="text-slate-700">{authUser.userName}</span>
               </h1>
               <button
                 type="submit"
-                className="btn flex items-center justify-center gap-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full p-4 transition duration-200 ease-in-out shadow-md hover:shadow-lg hover:from-purple-500 hover:to-blue-400 transform hover:-translate-y-1 active:scale-95 "
-                onClick={""}
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full p-2 sm:p-4 transition duration-200 ease-in-out shadow-md hover:shadow-lg hover:from-purple-500 hover:to-blue-400 transform hover:-translate-y-1 active:scale-95"
+                onClick={() => {}}
               >
-                <FaRegUser className="w-5 h-5 sm:w-4 sm:h-4" />
+                <FaRegUser className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-
-              <LogoutButton />
+              <button
+                type="submit"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full p-2 sm:p-4 transition duration-200 ease-in-out shadow-md hover:shadow-lg hover:from-purple-500 hover:to-blue-400 transform hover:-translate-y-1 active:scale-95"
+                onClick={logout}
+              >
+                <ImExit className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              
             </>
           ) : (
-            <Link to="/login">
-              <li className="text-slate-700 hover:underline">Sign in</li>
+            <Link to="/login" className="text-slate-700 hover:underline text-xs sm:text-base">
+              Sign in
             </Link>
           )}
         </div>
-
-        {/* <div className="relative">
-          {authUser ? (
-            <div className="flex items-center gap-4">
-             
-              <FaUserCircle
-                size={32}
-                className="text-slate-700 cursor-pointer"
-                onClick={toggleDropdown}
-              />
-              <LogoutButton />
-             
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-                    onClick={() => setDropdownOpen(false)}
-                  >
-                    Profile
-                  </Link>
-                  <div className="border-t border-gray-200"></div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link to="/login">
-              <li className="text-slate-700 hover:underline">Sign in</li>
-            </Link>
-          )}
-        </div> */}
       </div>
     </header>
   );

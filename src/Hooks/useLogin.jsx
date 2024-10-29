@@ -40,7 +40,6 @@ const useLogin = () => {
       const decodedToken = jwtDecode(data.token);
       setAuthUser(decodedToken);
       navigate("/home");
-
       toast.success("Login successful!");
     } catch (error) {
       toast.error(error.message);

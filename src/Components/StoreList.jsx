@@ -22,8 +22,6 @@ const StoreList = () => {
 
     fetchstores();
   }, []);
-
-  console.log(stores);
   
 
   // Take only the first 3 stores for the preview

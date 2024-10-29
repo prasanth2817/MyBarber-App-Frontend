@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function HomeText() {
+    const navigate = useNavigate();
   return (
     <article className="container mx-auto flex items-center justify-center gap-8 p-4">
       <div className="flex flex-col text-5xl my-2">
@@ -22,7 +24,7 @@ function HomeText() {
         </p>
         <button
           className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-transform transform hover:scale-105"
-          onClick={() => alert('Explore Beauty Services!')}
+          onClick={() => navigate('/allstores')}
         >
           Explore Now
         </button>

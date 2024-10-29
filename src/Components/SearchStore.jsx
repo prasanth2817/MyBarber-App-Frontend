@@ -6,25 +6,18 @@ import AxiosService from "../Common/ApiServices";
 function StoreSearch() {
   const [query, setQuery] = useState("");
   const [venueType, setVenueType] = useState("");
-  const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    if (!query && !propertyType && !minPrice && !maxPrice) {
+    if (!query && !venueType) {
       toast.error("Please fill in at least one search field.");
       return;
     }
 
     // Validation for propertyType field if required
-    if (propertyType === "") {
-      toast.error("Please select a property type.");
-      return;
-    }
-
-    // Validation for price range
-    if (minPrice && maxPrice && Number(minPrice) > Number(maxPrice)) {
-      toast.error("Min price should be less than Max price.");
+    if (venueType === "") {
+      toast.error("Please select a venue type.");
       return;
     }
 
@@ -33,14 +26,13 @@ function StoreSearch() {
       const response = await AxiosService.get("/stores/search", {
         params: {
           query,
-          venueType,
-          location
+          venueType
         },
       });
 
       // Check for successful response
       if (response.status === 200) {
-        navigate("/listings", { state: { properties: response.data } });
+        navigate("/listings", { state: { stores: response.data.store } });
       } else {
         toast.error(response.data.error || "Unexpected error occurred.");
       }
@@ -89,17 +81,10 @@ function StoreSearch() {
             className="w-9/12 p-1 border rounded text-gray-500 bg-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             <option value=""> Saloon Type</option>
-            <option value="Apartment">UniSex</option>
-            <option value="House">Womens</option>
-            <option value="Condo">Mens</option>
+            <option value="unisex">UniSex</option>
+            <option value="womens">Womens</option>
+            <option value="mens">Mens</option>
           </select>
-          <input
-            type="text"
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="w-6/12 p-3 border bg-slate-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
         </div>
         <div className="flex items-center justify-center">
           <button

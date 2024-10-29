@@ -9,7 +9,14 @@ import ForgotPassword from "../UserPages/ForgetPassword";
 import ResetPassword from "../UserPages/ResetPassword";
 import Header from "../Components/Header";
 import StoreDetails from "../UserComponents/StoreDetails";
+import StoreSearch from "../Components/SearchStore";
 import AllStoreListing from "../UserComponents/AllStores";
+import ServicePage from "../StorePages/ServicePage";
+import Schedule from "../StorePages/Schedule";
+import SelectProfessional from "../StorePages/SetProfessionals";
+import ReviewAndConfirmPage from "../StorePages/ReviewAndConfirmPage";
+import ConfirmationPage from "../StorePages/ConfirmationPage";
+import StoreListing from "../Components/StoreListings";
 
 function AppRoutes() {
   const { authUser } = useAuthContext();
@@ -30,7 +37,13 @@ function AppRoutes() {
           element={authUser ? <Home /> : <Navigate to={"/login"} />}
         />
         <Route path="/store/:id" element={<StoreDetails />} />
+        <Route path="/listings" element={<StoreListing />} />
         <Route path="/allstores" element={<AllStoreListing />} />
+        <Route path="/services" element={<ServicePage />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/setprofessionals" element={<SelectProfessional />} />
+        <Route path="/reviewandconfirm" element={<ReviewAndConfirmPage />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
       </Routes>
       <Toaster />
     </>
