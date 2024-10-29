@@ -32,9 +32,7 @@ const StoreListing = () => {
   }, []);
 
   useEffect(() => {
-    const newSearchResults = location.state?.stores || [];
-    console.log(newSearchResults);
-    
+    const newSearchResults = location.state?.stores || [];  
     setFilteredStores(newSearchResults);
   }, [location.state]);
 

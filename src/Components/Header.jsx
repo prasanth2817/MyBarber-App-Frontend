@@ -6,10 +6,7 @@ import useLogout from "../Hooks/useLogout";
 
 const Header = () => {
   const { authUser } = useAuthContext();
-  const { loading, logout } = useLogout();
-
-  console.log(authUser);
-  
+  const { loading, logout } = useLogout();  
 
   return (
     <header className="bg-slate-100 bg-gradient-to-r from-purple-400 to-blue-400 shadow-lg shadow-purple-400/50">

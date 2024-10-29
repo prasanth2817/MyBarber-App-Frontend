@@ -28,11 +28,11 @@ function StoreSearch() {
           query,
           venueType
         },
-      });
-
+      });   
+      
       // Check for successful response
       if (response.status === 200) {
-        navigate("/listings", { state: { stores: response.data.store } });
+        navigate("/listings", { state: { stores: response.data } });
       } else {
         toast.error(response.data.error || "Unexpected error occurred.");
       }
