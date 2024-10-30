@@ -9,21 +9,25 @@ const AllStoreListing = () => {
   const [venueType, setVenueType] = useState([]);
   const [filteredStores, setFilteredStores] = useState([]);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [checkboxes, setCheckboxes] = useState({
     forEveryOne: false,
     womens: false,
     mens: false,
   });
 
-  // Fetch all Stores
-  useEffect(() => {
+   // Fetch all Stores
+   useEffect(() => {
     const fetchAllStores = async () => {
       try {
+        setIsLoading(true); 
         const response = await AxiosService.get("/stores");
         setAllStores(response.data.store);
         setFilteredStores(response.data.store);
       } catch (error) {
         console.error("Error fetching all Stores:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchAllStores();
@@ -192,9 +196,12 @@ const AllStoreListing = () => {
       {/* Store Cards */}
       <div className="w-full lg:w-3/4 p-4">
         <h2 className="text-lg font-semibold mb-4">Store Listings</h2>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredStores.length > 0 ? (
+          {isLoading ? (
+              <div className="col-span-full flex justify-center items-center h-64">
+              <span className="loading loading-spinner bg-purple-400 w-4 h-4 sm:w-8 sm:h-8"></span>
+            </div>
+          ) : filteredStores.length > 0 ? (
             filteredStores.map((Store, index) => (
               <StoreCard key={index} store={Store} />
             ))

@@ -11,37 +11,37 @@ const StoreListing = () => {
   const [venueType, setVenueType] = useState([]);
   const [filteredStores, setFilteredStores] = useState(searchResults);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [checkboxes, setCheckboxes] = useState({
     unisex: false,
     mens: false,
     womens: false,
   });
 
-  //   Fetch all properties if no search results
+  // Fetch all Stores
   useEffect(() => {
     const fetchAllStores = async () => {
       try {
+        setIsLoading(true);
         const response = await AxiosService.get("/stores");
         setAllStores(response.data.store);
-        // setFilteredStores(response.data.store);
       } catch (error) {
-        console.error("Error fetching all stores:", error);
+        console.error("Error fetching all Stores:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchAllStores();
   }, []);
 
   useEffect(() => {
-    const newSearchResults = location.state?.stores || [];  
+    const newSearchResults = location.state?.stores || [];
     setFilteredStores(newSearchResults);
   }, [location.state]);
 
   // Enable the filter button if any filter inputs are provided
   useEffect(() => {
-    if (
-      searchTerm ||
-      venueType.length > 0
-    ) {
+    if (searchTerm || venueType.length > 0) {
       setIsFilterApplied(true);
     } else {
       setIsFilterApplied(false);
@@ -85,9 +85,7 @@ const StoreListing = () => {
       setVenueType((prevTypes) => [...prevTypes, value]);
     } else {
       // Remove the property type from the array
-      setVenueType((prevTypes) =>
-        prevTypes.filter((type) => type !== value)
-      );
+      setVenueType((prevTypes) => prevTypes.filter((type) => type !== value));
     }
   };
 
@@ -181,12 +179,16 @@ const StoreListing = () => {
         <h2 className="text-lg font-semibold mb-4">Store Listings</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredStores.length > 0 ? (
+          {isLoading ? (
+            <div className="col-span-full flex justify-center items-center h-64">
+              <span className="loading loading-spinner bg-purple-400 w-4 h-4 sm:w-8 sm:h-8"></span>
+            </div>
+          ) : filteredStores.length > 0 ? (
             filteredStores.map((store, index) => (
               <PropertyCard key={index} store={store} />
             ))
           ) : (
-            <p className="text-center text-2xl">No stores found.</p>
+            <p className="w-full text-center text-2xl">No Stores found.</p>
           )}
         </div>
       </div>

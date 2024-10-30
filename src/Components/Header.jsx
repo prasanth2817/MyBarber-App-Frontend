@@ -1,12 +1,23 @@
 import { useAuthContext } from "../Contexts/AuthContext";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
 import useLogout from "../Hooks/useLogout";
+import { useNavigate } from "react-router-dom";
+import { isTokenExpired } from "../Common/ExpireChecker";
 
 const Header = () => {
   const { authUser } = useAuthContext();
-  const { loading, logout } = useLogout();  
+  const { loading, logout } = useLogout();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isTokenExpired()) {
+      localStorage.removeItem("User-token");
+      navigate("/login");
+    }
+  }, [navigate, authUser]);
 
   return (
     <header className="bg-slate-100 bg-gradient-to-r from-purple-400 to-blue-400 shadow-lg shadow-purple-400/50">
@@ -25,7 +36,8 @@ const Header = () => {
           {authUser ? (
             <>
               <h1 className="text-slate-600 text-xs sm:text-base font-bold">
-                Welcome, <span className="text-slate-700">{authUser.userName}</span>
+                Welcome,{" "}
+                <span className="text-slate-700">{authUser.userName}</span>
               </h1>
               <button
                 type="submit"
@@ -34,17 +46,23 @@ const Header = () => {
               >
                 <FaRegUser className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-              <button
-                type="submit"
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full p-2 sm:p-4 transition duration-200 ease-in-out shadow-md hover:shadow-lg hover:from-purple-500 hover:to-blue-400 transform hover:-translate-y-1 active:scale-95"
-                onClick={logout}
-              >
-                <ImExit className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              
+              {!loading ? (
+                <button
+                  type="submit"
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full p-2 sm:p-4 transition duration-200 ease-in-out shadow-md hover:shadow-lg hover:from-purple-500 hover:to-blue-400 transform hover:-translate-y-1 active:scale-95"
+                  onClick={logout}
+                >
+                  <ImExit className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              ) : (
+                <span className="loading loading-spinner w-4 h-4 sm:w-5 sm:h-5"></span>
+              )}
             </>
           ) : (
-            <Link to="/login" className="text-slate-700 hover:underline text-xs sm:text-base">
+            <Link
+              to="/login"
+              className="text-slate-700 hover:underline text-xs sm:text-base"
+            >
               Sign in
             </Link>
           )}
