@@ -20,6 +20,10 @@ const ConfirmationPage = () => {
     navigate("/"); // Redirect to homepage or previous page
   };
 
+  const handleReturnHome = () =>{
+    navigate("/");
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-11/12 md:w-3/4 lg:w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md space-y-6">
@@ -41,6 +45,7 @@ const ConfirmationPage = () => {
           >
             Cancel Appointment
           </button>
+          <button className="mt-4 mx-4 px-4 py-2 bg-gray-600 text-white rounded-lg"  onClick={handleReturnHome}>Return Home</button>
         </div>
         <div>
           <h3 className="text-lg font-semibold">Booking Overview</h3>

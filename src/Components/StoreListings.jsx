@@ -104,9 +104,9 @@ const StoreListing = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row p-2 min-h-screen">
+    <div className="flex flex-col lg:flex-row p-2 min-h-screen bg-gradient-to-r from-blue-100 to-purple-100">
       {/* Sidebar for filters */}
-      <div className="w-full lg:w-1/4 p-4 bg-gray-100 overflow-auto">
+      <div className="w-full lg:w-1/4 p-4 bg-gradient-to-r from-purple-100 to-blue-100 overflow-auto shadow-purple-400/50">
         <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
         {/* Search by Store location */}

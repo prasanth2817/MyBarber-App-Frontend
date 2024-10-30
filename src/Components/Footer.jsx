@@ -30,7 +30,7 @@ function Footer() {
         </div>
       </div>
       <div className="text-gray-600 font-medium text-lg mb-12 text-center">
-        All rights reserved @ MyEstates.com
+        All rights reserved @ Book My Barber
       </div>
     </footer>
   );

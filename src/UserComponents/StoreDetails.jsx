@@ -49,11 +49,6 @@ const StoreDetails = () => {
     FetchServices();
   }, []);
 
-  const handleContactSeller = () => {
-    toast.success(
-      `Contact request received for ${Store.StoreName}. The seller will get back to you soon.`
-    );
-  };
 
   const handleSeeAllClick = () => {
     navigate("/services", { state: { Store, services } });
@@ -160,7 +155,7 @@ const StoreDetails = () => {
               <p className="font-semibold">Address: {Store.address}</p>
             </div>
             <div className="flex justify-center mt-4">
-              <button className="btn btn-primary">Book Now</button>
+              <button className="btn btn-primary"  onClick={handleSeeAllClick}>Book Now</button>
             </div>
           </div>
         </div>
@@ -171,12 +166,6 @@ const StoreDetails = () => {
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
         >
           Add to Favorites
-        </button>
-        <button
-          onClick={handleContactSeller}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300"
-        >
-          Book An Appointment
         </button>
       </div>
     </div>
