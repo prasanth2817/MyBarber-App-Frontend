@@ -25,9 +25,9 @@ const Header = () => {
         {/* Logo and Title */}
         <Link to="/">
           <h1 className="font-bold text-center text-xs sm:text-xl flex flex-wrap">
-            <span className="text-slate-700 text-sm lg:text-base">Book</span>
-            <span className="text-slate-500 text-md lg:text-2xl">My </span>
-            <span className="text-slate-800 text-lg lg:text-3xl">Barber</span>
+            <span className="text-slate-700 hover:text-xl transition-transform duration-500 hover:scale-105 text-sm lg:text-base">Book</span>
+            <span className="text-slate-500 hover:text-3xl transition-transform duration-500 hover:scale-105 text-md lg:text-2xl">My </span>
+            <span className="text-slate-800 hover:text-opacity-90 hover:text-4xl transition-transform duration-500 hover:scale-105 text-lg lg:text-3xl">Barber</span>
           </h1>
         </Link>
 

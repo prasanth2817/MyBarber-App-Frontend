@@ -23,7 +23,7 @@ function HomeText() {
           Ready to discover your next favorite beauty spot?
         </p>
         <button
-          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-transform transform hover:scale-105"
+          className="bg-blue-500 text-white font-semibold text-xs py-2 px-2 rounded-lg transition-transform transform hover:scale-105"
           onClick={() => navigate('/allstores')}
         >
           Explore Now

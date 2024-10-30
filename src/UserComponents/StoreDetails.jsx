@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import toast from "react-hot-toast";
 import AxiosService from "../Common/ApiServices";
 import { useEffect, useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
 
 const StoreDetails = () => {
   const [services, setServices] = useState([]);
@@ -49,7 +50,6 @@ const StoreDetails = () => {
     FetchServices();
   }, []);
 
-
   const handleSeeAllClick = () => {
     navigate("/services", { state: { Store, services } });
   };
@@ -60,12 +60,27 @@ const StoreDetails = () => {
 
   return (
     <div className="mt-0 pt-0 p-4 bg-gradient-to-r from-blue-100 to-purple-100">
-      <h2 className="text-3xl font-semibold mb-4 text-cyan-950 p-4">
+      {/* <h2 className="text-3xl lg:mx-12 font-semibold mb-4 text-cyan-950 p-4">
         {Store.storeName}
+        <button
+        onClick={handleAddToFavorites}
+        className="text-white rounded-full hover:bg-blue-600 transition duration-300">
+       <FaRegHeart />
+      </button>
+      </h2> */}
+
+      <h2 className="text-3xl ml-4 lg:mx-12 font-bold mb-4 text-cyan-950 p-4 flex items-center space-x-4">
+        {Store.storeName}
+        <button
+          onClick={handleAddToFavorites}
+          className="text-gray- mt-2 ml-4 outline-slate-800 shadow-2xl bg-white p-2 rounded-full hover:text-red-700 transition duration-300"
+        >
+          <FaRegHeart className="w-4 h-4 " />
+        </button>
       </h2>
 
       {/* Desktop Grid Layout */}
-      <div className="hidden md:grid grid-cols-10 gap-4 mb-6 h-96">
+      <div className="hidden lg:mx-12 md:grid grid-cols-10 gap-4 mb-6 h-96">
         <div className="col-span-7 h-full overflow-hidden rounded-lg shadow-md">
           {Store.images[0] && (
             <img
@@ -116,11 +131,11 @@ const StoreDetails = () => {
           ))}
         </Swiper>
       </div>
-      <div className="mb-4 text-xl font-light">
-        <p className="font-semibold">Services:</p>
+      <div className="mb-4 lg:mx-12 text-xl font-light">
+        <p className="text-xl text-gray-800 font-semibold">Services:</p>
       </div>
 
-      <div className="grid grid-cols-10 gap-4">
+      <div className="grid grid-cols-10 lg:mx-12 gap-4">
         {/* Services Section - 70% Width */}
         <div className="col-span-7">
           <div className="grid grid-cols-1 gap-4">
@@ -128,11 +143,24 @@ const StoreDetails = () => {
               services.slice(0, 3).map((service) => (
                 <div
                   key={service._id}
-                  className="bg-white shadow-md rounded-lg p-4"
+                  className="flex justify-between bg-white shadow-md rounded-lg p-4"
                 >
-                  <h3 className="text-lg font-semibold">{service.name}</h3>
-                  <p className="text-sm">Price: ${service.price}</p>
-                  <p className="text-sm">Duration: {service.duration}</p>
+                  <div>
+                    <h3 className="text-lg text-slate-700 font-semibold">
+                      {service.name}
+                    </h3>
+                    <p className="text-sm">Price: ${service.price}</p>
+                    <p className="text-sm">Duration: {service.duration}</p>
+                  </div>
+
+                  <div>
+                    <button
+                      className="px-3 py-1 mt-4 bg-gray-200 hover:bg-gray-300 text-slate-600 rounded-xl"
+                      onClick={handleSeeAllClick}
+                    >
+                      Book
+                    </button>
+                  </div>
                 </div>
               ))
             ) : (
@@ -140,7 +168,10 @@ const StoreDetails = () => {
             )}
           </div>
           <div className="flex justify-center mt-4">
-            <button className="btn btn-primary" onClick={handleSeeAllClick}>
+            <button
+              className="px-3 py-1 mt-4 bg-white text-gray-700 rounded-xl"
+              onClick={handleSeeAllClick}
+            >
               See All
             </button>
           </div>
@@ -149,24 +180,20 @@ const StoreDetails = () => {
         {/* Store Details Section - 30% Width */}
         <div className="col-span-3">
           <div className="card bg-white shadow-xl p-4">
-            <h2 className="card-title font-bold text-xl">{Store.storeName}</h2>
+            <h2 className="card- text-gray-700 font-bold text-xl">
+              {Store.storeName}
+            </h2>
             <div className="mt-2">
               <p className="font-semibold">Opens at: {Store.timings}</p>
               <p className="font-semibold">Address: {Store.address}</p>
             </div>
             <div className="flex justify-center mt-4">
-              <button className="btn btn-primary"  onClick={handleSeeAllClick}>Book Now</button>
+              <button className="btn btn-primary" onClick={handleSeeAllClick}>
+                Book Now
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-4 flex space-x-4">
-        <button
-          onClick={handleAddToFavorites}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
-        >
-          Add to Favorites
-        </button>
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ const StoreList = () => {
 
   return (
     <div className="container mx-auto w-full p-4 bg-gradient-to-r from-blue-100 to-purple-100">
-      <h2 className="text-lg font-semibold mb-4">Store Listings</h2>
+      <h2 className="text-2xl font-semibold mb-4 p-5">Store Listings</h2>
 
       {/* Grid displaying only the first 4 stores */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

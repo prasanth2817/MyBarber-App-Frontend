@@ -112,7 +112,7 @@ const AllStoreListing = () => {
     <div className="flex flex-col lg:flex-row p-2 min-h-screen bg-gradient-to-r from-blue-100 to-purple-100">
       {/* Sidebar for filters */}
       <div className="w-full lg:w-1/4 p-4 overflow-auto bg-gradient-to-r from-blue-100 to-purple-100">
-        <h2 className="text-lg font-semibold mb-4">Filters</h2>
+        <h2 className="text-lg text-black font-semibold mb-4">Filters</h2>
 
 {/* Search by Store Name */}
 <div className="mb-4">
@@ -195,7 +195,7 @@ const AllStoreListing = () => {
 
       {/* Store Cards */}
       <div className="w-full lg:w-3/4 p-4">
-        <h2 className="text-lg font-semibold mb-4">Store Listings</h2>
+        <h2 className="text-lg font-semibold text-black mb-4">Store Listings</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {isLoading ? (
               <div className="col-span-full flex justify-center items-center h-64">
