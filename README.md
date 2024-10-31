@@ -92,6 +92,7 @@ For questions or support, please reach out to [prasanth2817ss@gmail.com].
 
 Thank you for using MyBarber!
 ![BooMyBaber-UI](https://github.com/user-attachments/assets/e4a4549f-1108-46ca-8c88-ab531e1116b3)
-![Screenshot 2024-10-31 082416](https://github.com/user-attachments/assets/c0b3b640-3e7f-49cc-bfd5-bb43ae1bedea)
 ![Screenshot 2024-10-31 074344](https://github.com/user-attachments/assets/3fe6d175-f4d7-4d94-8a07-bab8e068e64c)
+![Screenshot 2024-10-31 082416](https://github.com/user-attachments/assets/c0b3b640-3e7f-49cc-bfd5-bb43ae1bedea)
+
 
