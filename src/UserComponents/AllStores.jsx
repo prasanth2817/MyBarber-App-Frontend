@@ -16,11 +16,11 @@ const AllStoreListing = () => {
     mens: false,
   });
 
-   // Fetch all Stores
-   useEffect(() => {
+  // Fetch all Stores
+  useEffect(() => {
     const fetchAllStores = async () => {
       try {
-        setIsLoading(true); 
+        setIsLoading(true);
         const response = await AxiosService.get("/stores");
         setAllStores(response.data.store);
         setFilteredStores(response.data.store);
@@ -32,21 +32,17 @@ const AllStoreListing = () => {
     };
     fetchAllStores();
   }, []);
-  
+
   // Enable the filter button if any filter inputs are provided
   useEffect(() => {
-    if (
-      searchTerm ||
-      venueType.length > 0 ||
-      searchByLocation
-    ) {
+    if (searchTerm || venueType.length > 0 || searchByLocation) {
       setIsFilterApplied(true);
     } else {
       setIsFilterApplied(false);
     }
   }, [searchTerm, venueType, searchByLocation]);
 
-  // Handle filtering 
+  // Handle filtering
   const handleFilter = () => {
     let filtered = allStores; // Always filter from allStores
 
@@ -89,9 +85,7 @@ const AllStoreListing = () => {
       setVenueType((prevTypes) => [...prevTypes, value]);
     } else {
       // Remove the Store type from the array
-      setVenueType((prevTypes) =>
-        prevTypes.filter((type) => type !== value)
-      );
+      setVenueType((prevTypes) => prevTypes.filter((type) => type !== value));
     }
   };
 
@@ -105,8 +99,8 @@ const AllStoreListing = () => {
       forEveryOne: false,
       womens: false,
       mens: false,
-  });
-}
+    });
+  };
 
   return (
     <div className="flex flex-col lg:flex-row p-2 min-h-screen bg-gradient-to-r from-blue-100 to-purple-100">
@@ -114,9 +108,11 @@ const AllStoreListing = () => {
       <div className="w-full lg:w-1/4 p-4 overflow-auto bg-gradient-to-r from-blue-100 to-purple-100">
         <h2 className="text-lg text-black font-semibold mb-4">Filters</h2>
 
-{/* Search by Store Name */}
-<div className="mb-4">
-          <label className="block text-gray-700 mb-2">Search by Store Name</label>
+        {/* Search by Store Name */}
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-2">
+            Search by Store Name
+          </label>
           <input
             type="text"
             value={searchTerm}
@@ -128,7 +124,7 @@ const AllStoreListing = () => {
 
         {/* Search by Store location */}
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Search by location</label>
+          <label className="block text-gray-700 font-semibold mb-2">Search by location</label>
           <input
             type="text"
             value={searchByLocation}
@@ -140,9 +136,9 @@ const AllStoreListing = () => {
 
         {/* Store Type Filter (Checkboxes) */}
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Venue Type</label>
+          <label className="block text-gray-700 font-semibold mb-2">Venue Type</label>
           <div>
-            <label className="block">
+            <label className="block text-gray-500 font-semibold">
               <input
                 type="checkbox"
                 value="forEveryOne"
@@ -151,7 +147,7 @@ const AllStoreListing = () => {
               />{" "}
               For EveryOne
             </label>
-            <label className="block">
+            <label className="block text-gray-500 font-semibold">
               <input
                 type="checkbox"
                 value="womens"
@@ -160,7 +156,7 @@ const AllStoreListing = () => {
               />{" "}
               Womens
             </label>
-            <label className="block">
+            <label className="block text-gray-500 font-semibold">
               <input
                 type="checkbox"
                 value="mens"
@@ -195,10 +191,12 @@ const AllStoreListing = () => {
 
       {/* Store Cards */}
       <div className="w-full lg:w-3/4 p-4">
-        <h2 className="text-lg font-semibold text-black mb-4">Store Listings</h2>
+        <h2 className="text-lg font-semibold text-black mb-4">
+          Store Listings
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {isLoading ? (
-              <div className="col-span-full flex justify-center items-center h-64">
+            <div className="col-span-full flex justify-center items-center h-64">
               <span className="loading loading-spinner bg-purple-400 w-4 h-4 sm:w-8 sm:h-8"></span>
             </div>
           ) : filteredStores.length > 0 ? (

@@ -61,7 +61,7 @@ function StoreSearch() {
   };
 
   return (
-    <div className="container mx-auto bg-gray-700 bg-opacity-70 p-6 xl:p-16 rounded-md shadow-md">
+    <div className="container mx-auto xl:mx-20 bg-gray-700 bg-opacity-70 p-6 xl:p-16 rounded-md shadow-md">
       <h1 className="text-center my-4 text-lg font-bold p-4 text-gray-200">
         {" "}
         Search Saloons{" "}
@@ -78,7 +78,7 @@ function StoreSearch() {
           <select
             value={venueType}
             onChange={(e) => setVenueType(e.target.value)}
-            className="w-3/12 p-1 text-lg font-medium  border rounded text-gray-500 bg-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-3/12 p-1 text-lg font-medium  border rounded-lg text-gray-500 bg-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             <option value=""> Saloon Type</option>
             <option className="text-lg font-medium" value="unisex">UniSex</option>

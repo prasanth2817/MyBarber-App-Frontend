@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
 const ServicePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,100 +45,84 @@ const ServicePage = () => {
     });
   };
   return (
-    <div className="grid grid-cols-10 gap-6 p-4 min-h-screen">
-      {/* Left Container - Available Services */}
-      {/* <div className="col-span-6">
-        <h2 className="text-2xl font-bold mb-4">Available Services</h2>
-        
-        <div className="grid grid-cols-1 gap-4">
-          {services && services.length > 0 ? (
-            services.map((service) => (
-              <div key={service._id} className="bg-white shadow-md rounded-lg p-4">
-                <h3 className="text-lg font-semibold">{service.name}</h3>
-                <p className="text-sm">Price: ${service.price}</p>
-                <p className="text-sm">Duration: {service.duration}</p>
-                <button className="btn btn-primary mt-2" onClick={() => addService(service)}>Add Service</button>
-              </div>
-            ))
-          ) : (
-            <p>No services available</p>
-          )}
-        </div>
-      </div> */}
+    <div className="mt-0 pt-0 p-4 bg-gradient-to-r from-blue-100 to-purple-100">
+      <div className="grid grid-cols-10 gap-6 p-4 min-h-screen">
+        {/* Left Container - Available Services */}
 
-      <div className="col-span-6">
-        <h2 className="text-2xl font-bold mb-4">Available Services</h2>
+        <div className="col-span-6">
+          <h2 className="text-2xl font-bold mb-4 text-purple-500">Available Services</h2>
 
-        <div className="grid grid-cols-1 gap-4">
-          {services && services.length > 0 ? (
-            services.map((service) => {
-              const isSelected = selectedServices.some(
-                (s) => s._id === service._id
-              );
-              return (
-                <div
-                  key={service._id}
-                  className="bg-white shadow-md rounded-lg p-4"
-                >
-                  <h3 className="text-lg font-semibold">{service.name}</h3>
-                  <p className="text-sm">Price: ${service.price}</p>
-                  <p className="text-sm">Duration: {service.duration}</p>
-                  <button
-                    className="btn btn-primary mt-2"
-                    onClick={() =>
-                      isSelected ? undoService(service) : addService(service)
-                    }
+          <div className="grid grid-cols-1 gap-4">
+            {services && services.length > 0 ? (
+              services.map((service) => {
+                const isSelected = selectedServices.some(
+                  (s) => s._id === service._id
+                );
+                return (
+                  <div
+                    key={service._id}
+                    className="bg-white shadow-md rounded-lg p-4"
                   >
-                    {isSelected ? "Undo" : "Add Service"}
-                  </button>
+                    <h3 className="text-lg font-semibold text-gray-700">{service.name}</h3>
+                    <p className="text-sm font-semibold">Price: Rs.{service.price}</p>
+                    <p className="text-sm font-semibold mt-1">Duration: {service.duration}</p>
+                    <button
+                      className="btn btn-primary mt-2"
+                      onClick={() =>
+                        isSelected ? undoService(service) : addService(service)
+                      }
+                    >
+                      {isSelected ? "Undo" : "Add Service"}
+                    </button>
+                  </div>
+                );
+              })
+            ) : (
+              <p>No services available</p>
+            )}
+          </div>
+        </div>
+
+        {/* Right Container - Selected Services and Total */}
+        <div className="col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
+          <h2 className="text-2xl font-bold mb-2 text-purple-500">
+            {Store?.storeName || "Store Name"}
+          </h2>
+          <p className="text-md mb-4 font-semibold">{Store?.location || "Store Location"}</p>
+
+          <h3 className="text-lg font-semibold mb-2 text-gray-600">Selected Services:</h3>
+
+          <div className="space-y-2">
+            {selectedServices.length > 0 ? (
+              selectedServices.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-center border-b pb-2"
+                >
+                  <span className="font-semibold">{service.name}</span>
+                  <span className="font-semibold">Rs.{service.price}</span>
                 </div>
-              );
-            })
-          ) : (
-            <p>No services available</p>
-          )}
+              ))
+            ) : (
+              <p className="text-gray-500">No services selected.</p>
+            )}
+          </div>
+
+          {/* Total Price */}
+          <div className="border-t mt-4 pt-2 flex justify-between items-center font-bold">
+            <span className="text-gray-600">Total Price:</span>
+            <span className="text-gray-600">Rs.{totalPrice}</span>
+          </div>
+
+          {/* Continue Button */}
+          <button
+            className="btn btn-primary mt-4 w-full"
+            onClick={handleContinue}
+            disabled={selectedServices.length === 0}
+          >
+            <span className="text-lg text-gray-700">Continue</span>
+          </button>
         </div>
-      </div>
-
-      {/* Right Container - Selected Services and Total */}
-      <div className="col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
-        <h2 className="text-2xl font-bold mb-2">
-          {Store?.storeName || "Store Name"}
-        </h2>
-        <p className="text-md mb-4">{Store?.location || "Store Location"}</p>
-
-        <h3 className="text-lg font-semibold mb-2">Selected Services:</h3>
-
-        <div className="space-y-2">
-          {selectedServices.length > 0 ? (
-            selectedServices.map((service, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center border-b pb-2"
-              >
-                <span>{service.name}</span>
-                <span>${service.price}</span>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500">No services selected.</p>
-          )}
-        </div>
-
-        {/* Total Price */}
-        <div className="border-t mt-4 pt-2 flex justify-between items-center font-bold">
-          <span>Total Price:</span>
-          <span>${totalPrice}</span>
-        </div>
-
-        {/* Continue Button */}
-        <button
-          className="btn btn-primary mt-4 w-full"
-          onClick={handleContinue}
-          disabled={selectedServices.length === 0}
-        >
-          <span className="text-gray-600">Continue</span>
-        </button>
       </div>
     </div>
   );
