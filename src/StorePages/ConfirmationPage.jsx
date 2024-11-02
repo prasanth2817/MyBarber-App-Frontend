@@ -16,7 +16,7 @@ const ConfirmationPage = () => {
   const navigate = useNavigate();
 
   const handleCancelAppointment = () => {
-    navigate("/");
+    navigate("/appointments");
   };
 
   const handleReturnHome = () =>{
@@ -28,7 +28,7 @@ const ConfirmationPage = () => {
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-11/12 md:w-3/4 lg:w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md space-y-6">
         <img
-          src={store.images[0]} // Replace with actual store image URL
+          src={store.images[0]}
           alt={store.storeName || "Store"}
           className="w-full h-48 object-cover rounded-t-xl"
         />

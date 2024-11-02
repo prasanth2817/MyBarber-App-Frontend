@@ -15,22 +15,23 @@ const ReviewAndConfirm = () => {
     selectedProfessional = null,
   } = location.state || {};
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [coupon, setCoupon] = useState("");
   const [bookingNotes, setBookingNotes] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
 
-     // Calculate total price from selected services
-     const calculatedTotalPrice = selectedServices.reduce(
-      (total, service) => total + (service.price || 0),
-      0
-    );
+  // Calculate total price from selected services
+  const calculatedTotalPrice = selectedServices.reduce(
+    (total, service) => total + (service.price || 0),
+    0
+  );
 
   const handleApplyCoupon = () => {
     toast.success("Coupon applied: " + coupon);
   };
 
   const handleConfirmBooking = async () => {
+    setLoading(true);
     const bookingData = {
       userId: authUser.id,
       serviceIds: selectedServices.map((service) => service._id),
@@ -77,7 +78,6 @@ const ReviewAndConfirm = () => {
       prevMethod === "Pay At Venue" ? "" : "Pay At Venue"
     );
   };
-  
 
   return (
     <article className="bg-gradient-to-r from-blue-100 to-purple-100">
@@ -217,9 +217,16 @@ const ReviewAndConfirm = () => {
           {/* Confirm Button */}
           <button
             onClick={handleConfirmBooking}
-            className="btn btn-success w-full mt-6"
+            disabled={loading || !paymentMethod}
+            className={`btn btn-success w-full mt-6 ${
+              loading ? "cursor-not-allowed" : ""
+            }`}
           >
-            Confirm Booking
+            {loading ? (
+              <span className="loading loading-spinner bg-purple-400 w-4 h-4 sm:w-8 sm:h-8"></span>
+            ) : (
+              "Confirm Booking"
+            )}
           </button>
         </div>
       </div>

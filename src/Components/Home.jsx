@@ -11,7 +11,7 @@ function Home() {
         <HomeText />
         <StoreSearch />
       </section>
-      <article className="bg-gradient-to-r from-blue-100 to-purple-100">
+      <article className="bg-gradient-to-r from-blue-100 to-purple-200">
       <StoreList />
         <Footer />
       </article>

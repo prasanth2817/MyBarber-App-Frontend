@@ -28,7 +28,7 @@ const StoreList = () => {
   const previewStores = stores.slice(0, 4);
 
   return (
-    <div className="container mx-auto w-full p-4 bg-gradient-to-r from-blue-100 to-purple-100">
+    <div className="container mx-auto w-full p-4 bg-gradient-to-r from-blue-100 to-purple-200">
       <h2 className="text-2xl font-semibold mb-4 p-5">Store Listings</h2>
 
       {/* Grid displaying only the first 4 stores */}

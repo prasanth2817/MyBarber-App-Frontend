@@ -137,7 +137,7 @@ const Schedule = () => {
                   className="flex justify-between items-center border-b pb-2"
                 >
                   <span>{service.name}</span>
-                  <span>${service.price}</span>
+                  <span>Rs.{service.price}</span>
                 </div>
               ))
             ) : (
@@ -148,7 +148,7 @@ const Schedule = () => {
           {/* Total Price */}
           <div className="border-t text-gray-600 mt-4 pt-2 flex justify-between items-center font-bold">
             <span>Total Price:</span>
-            <span>${totalPrice}</span>
+            <span>Rs.{totalPrice}</span>
           </div>
 
           {/* Continue Button */}

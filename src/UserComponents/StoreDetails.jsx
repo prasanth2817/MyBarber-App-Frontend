@@ -17,18 +17,18 @@ const StoreDetails = () => {
   const location = useLocation();
   const Store = location.state?.store;
 
+  
   const handleAddToFavorites = async () => {
     try {
       const token = localStorage.getItem("User-token");
       const decodedToken = jwtDecode(token);
       const userId = decodedToken?.id;
-      const StoreId = Store._id;
+      const storeId = Store._id;   
 
-      const response = await AxiosService.post("/favorites/create", {
-        StoreId,
-        userId,
+      const response = await AxiosService.put(`/user/favorites/add/${userId}`, {
+        storeId,
       });
-      toast.success(response.data.message);
+      toast.success(response.data.message || "Added to favorites!");
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message || "Failed to add favorite");
@@ -184,8 +184,8 @@ const StoreDetails = () => {
               {Store.storeName}
             </h2>
             <div className="mt-2">
-              <p className="font-semibold text-gray-600"> <span className="font-bold text-purple-500">Opens at: </span> {Store.timings}</p>
-              <p className="font-semibold text-gray-600"><span className="font-bold text-purple-500">Address: </span> {Store.address}</p>
+              <p className="font-semibold text-sm text-gray-600"> <span className="font-bold text-lg text-purple-500">Opens at: </span> {Store.timings}</p>
+              <p className="font-semibold text-sm text-gray-600"><span className="font-bold text-lg text-purple-500">Address: </span> {Store.address}</p>
             </div>
             <div className="flex justify-center mt-4">
               <button className="btn btn-primary" onClick={handleSeeAllClick}>

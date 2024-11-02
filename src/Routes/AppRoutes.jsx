@@ -17,6 +17,9 @@ import SelectProfessional from "../StorePages/SetProfessionals";
 import ReviewAndConfirmPage from "../StorePages/ReviewAndConfirmPage";
 import ConfirmationPage from "../StorePages/ConfirmationPage";
 import StoreListing from "../Components/StoreListings";
+import ProfilePage from "../UserPages/ProfilePage";
+import Appointments from "../UserPages/Appointments";
+import Favorites from "../UserPages/Favorites";
 
 function AppRoutes() {
   const { authUser } = useAuthContext();
@@ -32,6 +35,9 @@ function AppRoutes() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/profilepage" element={<ProfilePage />} />
+        <Route path="/appointments" element={<Appointments />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route
           path="/"
           element={authUser ? <Home /> : <Navigate to={"/login"} />}
