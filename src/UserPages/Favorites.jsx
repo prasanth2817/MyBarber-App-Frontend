@@ -51,70 +51,38 @@ const Favorites = () => {
   };
 
   return (
-    // <div className="p-6 min-h-screen">
-    //   <h2 className="text-2xl font-bold mb-4">Your Favorite Stores</h2>
-    //   {favorites.length === 0 ? (
-    //     <p>No favorites found.</p>
-    //   ) : (
-    //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    //       {favorites.map((store) => (
-    //         <div
-    //           key={store._id}
-    //           className="bg-white shadow-lg rounded-lg p-4 cursor-pointer overflow-hidden hover:shadow-xl transition-shadow"
-    //           onClick={() => handleStoreClick(store._id)}
-    //         >
-    //           <div className="relative">
-    //             <img
-    //               src={store.images[0]}
-    //               alt={store.storeName}
-    //               className="w-full h-44 object-cover transition-transform duration-500 hover:scale-105"
-    //             />
-    //           </div>
-    //           <h3 className="text-lg font-semibold">{store.storeName}</h3>
-    //           <p className="text-gray-600">{store.location}</p>
-    //           <p className="text-center text-gray-200 bg-blue-500 p-0.5 rounded-full text-xs font-medium w-1/2 lg:w-4/12">
-    //             {store.venueType}
-    //           </p>
-    //           <button
-    //             className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-    //             onClick={(e) => {
-    //               e.stopPropagation();
-    //               handleRemoveFavorite(store._id);
-    //             }}
-    //           >
-    //             Remove from Favorites
-    //           </button>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   )}
-    // </div>
     <div className="p-6 min-h-screen bg-gradient-to-r from-blue-100 to-purple-200">
-    <h2 className="text-2xl font-bold mb-4">Your Favorite Stores</h2>
-    
-    {!favorites.length ? (
-      <p className="text-center font-semibold text-2xl mt-20">No favorites found.</p>
-    ) : (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {favorites.map((store) => (
-          <div
-            key={store._id}
-            className="bg-white shadow-lg rounded-lg p-4 cursor-pointer overflow-hidden hover:shadow-xl transition-shadow"
-            onClick={() => handleStoreClick(store)}
-          >
-            <div className="relative">
-              <img
-                src={store.images[0]}
-                alt={store.storeName}
-                className="w-full h-44 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-            <h3 className="text-lg font-semibold mt-2">{store.storeName}</h3>
-            <p className="text-gray-600">{store.location}</p>
-            <p className="text-center mt-2 text-gray-200 bg-blue-500 p-0.5 rounded-full text-xs font-medium w-1/2 lg:w-4/12">
-              {store.venueType}
-            </p>
-            <button
+      <h2 className="text-2xl font-bold mb-4">Your Favorite Stores</h2>
+
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <span className="loading loading-spinner bg-purple-400 w-4 h-4 sm:w-8 sm:h-8"></span>
+        </div>
+      ) : error ? (
+        <p className="text-center text-red-500">{error}</p>
+      ) : !favorites.length ? (
+        <p className="text-center font-semibold text-2xl mt-20">No favorites found.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {favorites.map((store) => (
+            <div
+              key={store._id}
+              className="bg-white shadow-lg rounded-lg p-4 cursor-pointer overflow-hidden hover:shadow-xl transition-shadow"
+              onClick={() => handleStoreClick(store)}
+            >
+              <div className="relative">
+                <img
+                  src={store.images[0]}
+                  alt={store.storeName}
+                  className="w-full h-44 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <h3 className="text-lg font-semibold mt-2">{store.storeName}</h3>
+              <p className="text-gray-600">{store.location}</p>
+              <p className="text-center mt-2 text-gray-200 bg-blue-500 p-0.5 rounded-full text-xs font-medium w-1/2 lg:w-4/12">
+                {store.venueType}
+              </p>
+              <button
                 className="mt-4 px-2 py-1 font-semibold rounded-lg bg-red-500 text-white hover:bg-red-600"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -123,13 +91,13 @@ const Favorites = () => {
               >
                 Remove
               </button>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-  
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
 export default Favorites;
+
