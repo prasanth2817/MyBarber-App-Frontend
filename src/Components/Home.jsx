@@ -7,7 +7,7 @@ import HomeText from "./HomeText";
 function Home() {
   return (
     <>
-      <section className="bg-gradient-to-r from-blue-300 to-purple-300">
+      <section className="flex flex-col gap-6 bg-gradient-to-r from-blue-300 to-purple-300">
         <HomeText />
         <StoreSearch />
       </section>
