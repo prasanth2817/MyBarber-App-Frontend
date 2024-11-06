@@ -37,13 +37,13 @@ const Header = () => {
         {/* Logo and Title */}
         <Link to="/">
           <h1 className="font-bold text-center text-xs sm:text-xl flex flex-wrap">
-            <span className="text-slate-700 hover:text-xl transition-transform duration-500 hover:scale-105 text-sm lg:text-base">
+            <span className="text-slate-700 hover:text-base lg:hover:text-xl transition-transform duration-500 hover:scale-105 text-sm lg:text-base">
               Book
             </span>
-            <span className="text-slate-500 hover:text-3xl transition-transform duration-500 hover:scale-105 text-md lg:text-2xl">
+            <span className="text-slate-500 hover:text-xl lg:hover:text-3xl transition-transform duration-500 hover:scale-105 text-md lg:text-2xl">
               My{" "}
             </span>
-            <span className="text-slate-800 hover:text-opacity-90 hover:text-4xl transition-transform duration-500 hover:scale-105 text-lg lg:text-3xl">
+            <span className="text-slate-800 hover:text-opacity-90 hover:text-2xl lg:hover:text-4xl transition-transform duration-500 hover:scale-105 text-lg lg:text-3xl">
               Barber
             </span>
           </h1>
@@ -68,7 +68,7 @@ const Header = () => {
               {/* Dropdown Menu */}
               {dropdownOpen && (
                 <div
-                  className="absolute lg:mt-52 lg:right-14 xl:right-28 bg-gradient-to-r from-blue-300 to-purple-300 w-auto lg:w-40 rounded-lg shadow-lg border border-gray-200 z-10"
+                  className="absolute mt-44 right-1 lg:mt-52 lg:right-14 xl:right-28 bg-gradient-to-r from-blue-300 to-purple-300 w-auto lg:w-40 rounded-lg shadow-lg border border-gray-200 z-10"
                   onClick={closeDropdown}
                 >
                   <ul className="text-sm text-gray-700">

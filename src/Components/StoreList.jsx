@@ -50,7 +50,7 @@ const StoreList = () => {
       <div className="mt-6 flex justify-center">
         <button
           onClick={() => navigate('/allstores')}
-          className={`bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition ${
+          className={`bg-blue-500 text-sm font-semibold text-white px-2 lg:px-6 py-1 lg:py-2 rounded-lg shadow-md hover:bg-blue-600 transition ${
             previewStores.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           disabled={previewStores.length === 0}

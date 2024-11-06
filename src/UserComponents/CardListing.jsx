@@ -24,7 +24,7 @@ const storeCard = ({ store }) => {
     <h3 className="text-base text-black font-semibold mb-1 truncate">{store.storeName}</h3>
     <div className="mt-auto">
       <p className="text-gray-500 font-semibold text-sm font- mb-2">{store.location}</p>
-      <p className="text-center text-gray-200 bg-blue-500 p-0.5 rounded-full text-xs font-medium w-1/2 lg:w-4/12">
+      <p className="text-center text-gray-200 bg-blue-500 p-0.5 rounded-full text-xs font-medium w-3/12 lg:w-4/12">
         {store.venueType}
       </p>
     </div>

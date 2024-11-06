@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SelectProfessional = () => {
+  
   const location = useLocation();
   const { store, selectedDate, selectedTime, selectedServices } = location.state || {};
   const navigate = useNavigate();
@@ -30,21 +31,21 @@ const SelectProfessional = () => {
     <div className="grid grid-cols-10 gap-6 p-4 min-h-screen">
       
     {/* Left Container - Select Professional */}
-<div className="col-span-6">
+<div className="col-span-12 lg:col-span-6">
   <h2 className="text-2xl font-bold text-purple-500 mb-6">Select Professional</h2>
 
   {/* Default "Any Professional" option with icon */}
   <button
-    className={`flex items-center p-3 mb-4 rounded-lg w-full ${
+    className={`flex items-center p-3 ml-1 mb-4 rounded-lg w-full ${
       selectedProfessional.id === 'any' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 font-semibold'
     }`}
     onClick={() => handleProfessionalSelect({ firstName: 'Any', lastName: 'Professional', id: 'any' })}
   >
-    <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+    <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-1 lg:mr-3">
       {/* Placeholder icon, you could replace this with an <img> if profile images are available */}
-      <span className="text-lg font-bold text-gray-700">A</span>
+      <span className="text-lg font-bold text-gray-700">AP</span>
     </div>
-    <span className='text-lg'>Any Professional (for best availability)</span>
+    <span className='text-base lg:text-lg'>Any Professional (for best availability)</span>
   </button>
 
   {/* List of available professionals */}
@@ -59,12 +60,12 @@ const SelectProfessional = () => {
       >
         {/* Circular icon for each professional */}
         <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-3">
-          {/* Initials as a placeholder icon, or replace with <img src={professional.imageUrl} /> if you have images */}
+          
           <span className="text-lg font-bold text-gray-700">
             {professional.firstName[0]}{professional.lastName[0]}
           </span>
         </div>
-        <span className='text-lg'>{professional.firstName} {professional.lastName}</span>
+        <span className='text-base lg:text-lg'>{professional.firstName} {professional.lastName}</span>
       </button>
     ))}
   </div>
@@ -72,7 +73,7 @@ const SelectProfessional = () => {
 
 
       {/* Right Container - Selected Store, Date, Time, Services, and Professional */}
-      <div className="col-span-4 bg-white shadow-lg rounded-lg p-4">
+      <div className="col-span-12 lg:col-span-4 bg-white shadow-lg rounded-lg p-4">
         <h2 className="text-2xl text-purple-500 font-bold mb-2">{store?.storeName || 'Store Name'}</h2>
         <p className="text-md font-semibold mb-2">Location: {store?.location || 'Store Location'}</p>
         

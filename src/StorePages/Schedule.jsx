@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Schedule = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { store, selectedServices, totalPrice } = location.state || {};
+  const { store, selectedServices = [], totalPrice } = location.state || {};
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -51,19 +51,19 @@ const Schedule = () => {
     <div className="mt-0 pt-0 p-4 bg-gradient-to-r from-blue-100 to-purple-100">
       <div className="grid grid-cols-10 gap-6 p-4 min-h-screen">
         {/* Left Container - Date and Time Selection */}
-        <div className="col-span-6">
+        <div className="col-span-12 lg:col-span-6">
           <h2 className="text-2xl font-bold mb-4 text-purple-500">
             Select Date and Time
           </h2>
 
           {/* Date Selection */}
-          <div className="grid grid-cols-7 gap-2 mb-6">
+          <div className="grid grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
             {getNextSevenDays().map((date) => {
               const dateString = date.toDateString();
               return (
                 <button
                   key={dateString}
-                  className={`p-2 rounded-lg ${
+                  className={`p-2.5 lg:p-2 rounded-lg text-sm ${
                     selectedDate?.toDateString() === dateString
                       ? "bg-blue-500 text-white"
                       : "bg-white text-slate-500 font-semibold"
@@ -81,28 +81,44 @@ const Schedule = () => {
           </div>
 
           {/* Time Selection */}
-          <div className="grid grid-cols-4 gap-4">
-            {availableTimes.map((time) => (
-              <button
-                key={time}
-                className={`p-2 rounded-lg ${
-                  selectedTime === time
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-slate-500 font-semibold"
-                }`}
-                onClick={() => setSelectedTime(time)}
-              >
-                {time.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </button>
-            ))}
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
+            {availableTimes.map((time) => {
+              if (!selectedDate) return null;
+
+              // Determine if the selected time is in the past for today's date
+              const selectedDateTime = new Date(
+                selectedDate.getFullYear(),
+                selectedDate.getMonth(),
+                selectedDate.getDate(),
+                time.getHours(),
+                time.getMinutes()
+              );
+
+              const currentTime = new Date();
+              const isPastTime =
+                selectedDate.toDateString() === currentTime.toDateString() &&
+                selectedDateTime < currentTime;
+
+              return (
+                <button
+                  key={time}
+                  className={`p-2 rounded-lg text-sm ${
+                    selectedTime === time
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-slate-500 font-semibold"
+                  } ${isPastTime ? "opacity-50 cursor-not-allowed" : ""}`}
+                  disabled={isPastTime}
+                  onClick={() => setSelectedTime(time)}
+                >
+                  {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Right Container - Store and Appointment Summary */}
-        <div className="col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
+        <div className="col-span-12 lg:col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
           <h2 className="text-2xl font-bold mb-2 text-purple-500">
             {store?.storeName || "Store Name"}
           </h2>
@@ -114,15 +130,15 @@ const Schedule = () => {
           </h3>
           <p className="mb-4">
             {selectedDate
-              ? selectedDate.toLocaleDateString()
-              : "No date selected"}{" "}
-            at{" "}
-            {selectedTime
-              ? selectedTime.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : "No time selected"}
+              ? `${selectedDate.toLocaleDateString()} at ${
+                  selectedTime
+                    ? selectedTime.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : "No time selected"
+                }`
+              : "No date selected"}
           </p>
 
           {/* Selected Services */}
@@ -166,3 +182,4 @@ const Schedule = () => {
 };
 
 export default Schedule;
+

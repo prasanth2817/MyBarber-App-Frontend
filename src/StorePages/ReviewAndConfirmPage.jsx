@@ -5,6 +5,7 @@ import AxiosService from "../Common/ApiServices";
 import { useAuthContext } from "../Contexts/AuthContext";
 
 const ReviewAndConfirm = () => {
+
   const location = useLocation();
   const { authUser } = useAuthContext();
   const {
@@ -83,7 +84,7 @@ const ReviewAndConfirm = () => {
     <article className="bg-gradient-to-r from-blue-100 to-purple-100">
       <div className="grid grid-cols-10 gap-6 p-4 min-h-screen mx-12">
         {/* Left Container - Review and Confirm Options */}
-        <div className="col-span-6">
+        <div className="col-span-12 lg:col-span-6">
           <h2 className="text-2xl text-purple-500 font-bold mb-6">
             Review and Confirm
           </h2>
@@ -96,7 +97,7 @@ const ReviewAndConfirm = () => {
             <div>
               <button
                 type="button"
-                className={`p-3 rounded-lg font-medium w-6/12 ${
+                className={`p-3 rounded-lg font-medium w-full lg:w-6/12 ${
                   paymentMethod === "Pay At Venue"
                     ? "bg-purple-400 text-white"
                     : "bg-slate-100"
@@ -109,7 +110,7 @@ const ReviewAndConfirm = () => {
             <div>
               <button
                 type="button"
-                className={`p-3 rounded-lg font-medium w-6/12 bg-slate-100 mt-6`}
+                className={`p-3 rounded-lg font-medium w-full lg:w-6/12 bg-slate-100 mt-6`}
                 disabled={"true"}
               >
                 Other Options{" "}
@@ -129,7 +130,7 @@ const ReviewAndConfirm = () => {
                 value={coupon}
                 onChange={(e) => setCoupon(e.target.value)}
                 placeholder="Enter coupon code"
-                className="p-3 border bg-slate-100 rounded-lg w-6/12"
+                className="p-3 border bg-slate-100 rounded-lg w-full lg:w-6/12"
               />
               <button onClick={handleApplyCoupon} className="btn btn-primary">
                 Apply
@@ -146,13 +147,13 @@ const ReviewAndConfirm = () => {
               value={bookingNotes}
               onChange={(e) => setBookingNotes(e.target.value)}
               placeholder="Any special requests?"
-              className="p-3 border bg-slate-100 rounded-lg w-9/12 h-24"
+              className="p-3 border bg-slate-100 rounded-lg w-full lg:w-9/12 h-24"
             />
           </div>
         </div>
 
         {/* Right Container - Booking Summary */}
-        <div className="col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
+        <div className="col-span-12 lg:col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
           <h2 className="text-2xl text-blue-400 font-bold mb-4">
             Booking Summary
           </h2>

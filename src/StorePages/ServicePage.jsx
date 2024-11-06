@@ -49,7 +49,7 @@ const ServicePage = () => {
       <div className="grid grid-cols-10 gap-6 p-4 min-h-screen">
         {/* Left Container - Available Services */}
 
-        <div className="col-span-6">
+        <div className="col-span-12 lg:col-span-6">
           <h2 className="text-2xl font-bold mb-4 text-purple-500">Available Services</h2>
 
           <div className="grid grid-cols-1 gap-4">
@@ -84,7 +84,7 @@ const ServicePage = () => {
         </div>
 
         {/* Right Container - Selected Services and Total */}
-        <div className="col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
+        <div className="col-span-12 lg:col-span-4 bg-gray-100 shadow-lg rounded-lg p-4">
           <h2 className="text-2xl font-bold mb-2 text-purple-500">
             {Store?.storeName || "Store Name"}
           </h2>

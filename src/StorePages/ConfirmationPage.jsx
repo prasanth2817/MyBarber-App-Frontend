@@ -45,7 +45,7 @@ const ConfirmationPage = () => {
           >
             Cancel Appointment
           </button>
-          <button className="mt-4 mx-4 px-4 py-2 bg-gray-600 font-semibold text-white rounded-lg"  onClick={handleReturnHome}>Return Home</button>
+          <button className="mt-4 mx-4 px-4 py-2 bg-gray-600 font-semibold text-white rounded-lg"  onClick={handleReturnHome}> Return Home </button>
         </div>
         <div>
           <h3 className="text-lg text-gray-500 font-semibold">Booking Overview</h3>

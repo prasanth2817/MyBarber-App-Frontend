@@ -65,7 +65,7 @@ const StoreDetails = () => {
   return (
     <div className="mt-0 pt-0 p-4 bg-gradient-to-r from-blue-100 to-purple-100">
 
-      <h2 className="text-3xl ml-4 lg:mx-12 font-bold mb-4 text-cyan-950 p-4 flex items-center space-x-4">
+      <h2 className="text-xl lg:text-3xl ml-4 lg:mx-12 font-bold mb-4 text-cyan-950 p-4 flex items-center space-x-4">
         {Store.storeName}
         <button
           onClick={handleAddToFavorites}
@@ -133,7 +133,7 @@ const StoreDetails = () => {
 
       <div className="grid grid-cols-10 lg:mx-12 gap-4">
         {/* Services Section - 70% Width */}
-        <div className="col-span-7">
+        <div className="col-span-12 lg:col-span-7">
           <div className="grid grid-cols-1 gap-4">
             {isLoading ? (
             <div className="col-span-full flex justify-center items-center h-64">
@@ -178,7 +178,7 @@ const StoreDetails = () => {
         </div>
 
         {/* Store Details Section - 30% Width */}
-        <div className="col-span-3">
+        <div className="col-span-12 lg:col-span-3">
           <div className="card bg-white shadow-xl p-4">
             <h2 className="card text-purple-500 font-bold text-xl">
               {Store.storeName}
