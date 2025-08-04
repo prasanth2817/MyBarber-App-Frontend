@@ -25,9 +25,9 @@ This repository contains the frontend code for **BookMyBarber**. It connects wit
 
 1. **Clone the repository:**
  
-   git clone https://github.com/prasanth2817/MyBarber-App-Frontend.git
+git clone https://github.com/prasanth2817/MyBarber-App-Frontend.git
 
-   cd mybarber-frontend
+cd mybarber-frontend
 
 2.**Install dependencies:**
 
@@ -47,18 +47,18 @@ npm run build
 
 ⚙️ Project Structure
 
-mybarber-frontend/
-├── src/
-│   ├── components/        # Reusable UI components
-│   ├── pages/             # Page components for different routes
-│   ├── hooks/             # Custom hooks
-│   ├── contexts/          # Context providers for global state
-│   ├── services/          # Axios services for API requests
-│   ├── assets/            # Static assets
-│   └── App.jsx            # Main application component
+mybarber-frontend/  
+├── src/  
+│   ├── components/     
+│   ├── pages/   
+│   ├── hooks/   
+│   ├── contexts/          
+│   ├── services/         
+│   ├── assets/            
+│   └── App.jsx            
 │
-├── public/                # Public files
-└── README.md              # Project documentation
+├── public/               
+└── README.md
 
 🚦 Routes
 /login - User login page
@@ -83,9 +83,6 @@ We welcome contributions! If you have suggestions or improvements, feel free to 
 
 🐛 Issues
 If you encounter any issues, please open an issue in this repository with relevant details.
-
-📜 License
-This project is licensed under the MIT License.
 
 📞 Contact
 For questions or support, please reach out to [prasanth2817ss@gmail.com].
